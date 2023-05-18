@@ -1,0 +1,12 @@
+.header {
+    background-color: rgb(247, 215, 37);
+    padding: 5px 5px;
+}
+
+.header-text {
+    color: rgb(105, 48, 48);
+    font-weight: 700;
+    font-size: 18px;
+    /* background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%); */
+
+}

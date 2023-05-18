@@ -1,0 +1,29 @@
+.gametotal {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--blue);
+    height: 50%;
+    /* margin-top: 50px; */
+    border-radius: 10px;
+    padding: 10px 10px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    color: var(--yellow);
+    row-gap: 25px;
+    justify-content: center;
+    height: 100%;
+}
+
+.link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button {
+    padding: 10px 10px;
+    /* display: flex;
+    justify-content: center; */
+}

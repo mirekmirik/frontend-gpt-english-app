@@ -1,0 +1,32 @@
+.phrase {
+    width: 100%;
+    background-color: var(--blue);
+    border-radius: 10px;
+    height: auto;
+    padding: 10px 5px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.span {
+    font-weight: 600;
+    color: var(--violet);
+    /* color: var(--violet); */
+}
+
+.paragraph {
+    font-weight: 600;
+    color: var(--yellow);
+}
+
+.textwrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controllers {
+    display: flex;
+    column-gap: 10px;
+}

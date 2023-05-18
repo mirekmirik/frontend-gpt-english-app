@@ -1,0 +1,13 @@
+.games {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 25%;
+    column-gap: 5px;
+}
+
+.line {
+    height: 90%;
+    background-color: var(--violet);
+    width: 2px;
+}

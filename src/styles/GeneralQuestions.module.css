@@ -1,0 +1,132 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    font-weight: 600;
+
+}
+
+.text {
+    text-align: center;
+    color: var(--yellow);
+    background-color: var(--blue);
+    padding: 5px 5px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.random {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    margin-bottom: 30px;
+}
+
+.input {
+    /* height: 15px; */
+    padding: 10px 10px;
+    /* border-radius: 5px; */
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+
+    border: none;
+    background-color: var(--blue);
+    color: var(--yellow);
+}
+
+.button {
+    border: none;
+    /* cursor: none; */
+    /* background-color: var(--yellow); */
+    background-color: var(--blue);
+    color: var(--yellow);
+    font-weight: 600;
+    /* flex: auto; */
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+
+
+.category {
+    display: flex;
+    justify-content: center;
+    /* column-gap: 5px; */
+}
+
+.controllers {
+    display: flex;
+
+}
+
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    /* justify-content: center; */
+    width: 100%;
+    height: 800px;
+    /* height: 100%; */
+    row-gap: 30px;
+}
+
+.question-text {
+    text-align: center;
+    background-color: var(--blue);
+    padding: 10px 10px;
+    border-radius: 10px;
+    color: var(--yellow);
+}
+
+.options-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+    row-gap: 30px;
+    /* background-color: var(--yellow); */
+    border-radius: 10px;
+    padding: 10px 10px;
+    color: var(--yellow);
+    column-gap: 20px;
+}
+
+.option {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 45%;
+    min-height: 50px;
+    padding: 7px 5px;
+    /* text-align: center; */
+    background-color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.option p {
+    text-align: center;
+}
+
+.total {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 10px;
+}
+
+.totalquestions {
+    text-align: center;
+    color: var(--yellow);
+}
+
+.controllers {
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+    /* justify-content: end; */
+}

@@ -1,0 +1,96 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+:root {
+    /* --yellow: rgb(247, 215, 37); */
+    --yellow: #f7d725;
+    --background: #5D3FD3;
+    --blue: rgb(39 41 153 / 56%);
+    --violet: rgb(112, 54, 161);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+
+* {
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #5D3FD3;
+    height: 100vh;
+    /* background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%); */
+    /* background: rgb(63, 94, 251);
+    background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%); */
+
+}
+
+.App {
+    height: 100vh;
+}
+
+textarea:focus,
+input:focus {
+    outline: none;
+    /* outline-color: #5D3FD3; */
+}
+
+input[type=text]:hover {
+    box-shadow: 0 0 4pt 3pt var(--yellow);
+}
+
+input[type=text]:focus {
+    box-shadow: 0 0 4pt 1pt var(--yellow);
+    outline-width: 0px;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0;
+    padding: 0;
+}
+
+select {
+    outline: none;
+    border: none;
+}
+
+hr {
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+
+button {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 3px;
+    border: none;
+    /* background-color: inherit; */
+    /* cursor: none; */
+    background-color: var(--yellow);
+    color: var(--violet);
+    font-weight: 600;
+    /* flex: auto; */
+    /* padding: 10px 10px; */
+}
+
+button:hover {
+    transition: 0.3s;
+    background-color: aquamarine;
+}
+
+a {
+    text-decoration: none;
+}

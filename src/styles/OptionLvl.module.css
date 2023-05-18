@@ -1,0 +1,55 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.picklvl {
+    margin-bottom: 10px;
+    display: flex;
+    column-gap: 5px;
+
+}
+
+.select {
+    border-radius: 5px;
+    padding: 5px 3px;
+    background-color: var(--yellow);
+    color: var(--violet);
+    font-weight: 600;
+}
+
+.text {
+    font-weight: 600;
+    color: #ffff;
+}
+
+.option {
+    font-weight: 600;
+}
+
+.optionlvl {
+    margin-bottom: 20px;
+}
+
+.submit {
+    border: none;
+    /* cursor: none; */
+    background-color: var(--yellow);
+    color: var(--violet);
+    font-weight: 600;
+    /* flex: auto; */
+    padding: 10px 10px;
+    width: 30%;
+    border-radius: 5px;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
