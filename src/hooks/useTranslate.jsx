@@ -12,7 +12,7 @@ const useTranslate = () => {
                 setTranslateText('')
                 return;
             }
-            const response = await fetch('http://localhost:8080/translate', {
+            const response = await fetch(`${BASE_URL}/translate`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
