@@ -3,5 +3,6 @@ export const ROUTES = {
     AUTH: '/auth/:type',
     OPTION_LVL: '/optionlvl',
     GAMES: '/games',
-    GAME_GENERAL_QUESTION: '/games/general-questions'
+    GAME_GENERAL_QUESTION: '/games/general-questions',
+    SETTINGS: '/settings'
 }

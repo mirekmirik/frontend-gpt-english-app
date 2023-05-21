@@ -9,7 +9,7 @@ const Option = ({ value, key, onClick }) => {
 
     return (
         <div className={styles.option} key={key}>
-            <p onClick={onClick}>{translateText || value}</p>
+            <p onClick={onClick} >{translateText || value}</p>
             <div className={styles.controllers}>
                 <SpeechTextButton text={value} />
                 <TranslateBtn text={value} />

@@ -4,3 +4,6 @@
     display: flex;
     align-items: center;
 }
+.button:hover {
+    background-color: aquamarine;
+}

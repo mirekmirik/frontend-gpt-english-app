@@ -5,8 +5,8 @@ import { BASE_URL } from "../utils/constants"
 
 export const getTopWords = createAsyncThunk('phrases/getTopWords', async (_, thunkAPI) => {
     const { phrases } = thunkAPI.getState()
+    const { user: { currentUser: { englishLvl } } } = thunkAPI.getState()
     const phrasesArr = [...phrases.phrases.map(({ phrase }) => phrase), ...phrases.allPhrases]
-
 
     try {
         const res = await fetch(`${BASE_URL}/topwords`, {
@@ -15,25 +15,21 @@ export const getTopWords = createAsyncThunk('phrases/getTopWords', async (_, thu
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                phrases: phrasesArr.join(', ')
+                phrases: phrasesArr.join(', '),
+                englishLvl
             })
         })
 
         if (!res.ok) {
             const data = await res.json()
-            throw new Error(JSON.stringify(data))
+            throw new Error(data.error)
         }
 
         const data = await res.json()
         return data
     } catch (error) {
-        console.log(error)
-
-        const jsonMessage = JSON.parse(error.message);
-        return thunkAPI.rejectWithValue(jsonMessage.error);
+        return thunkAPI.rejectWithValue(error.message)
     }
-
-
 })
 
 
@@ -53,12 +49,10 @@ export const sendToDBTopWords = createAsyncThunk('phrases/sendToDBTopWords', asy
 
         if (!res.ok) {
             const data = await res.json()
-            throw new Error(JSON.stringify(data))
+            throw new Error(data.error)
         }
     } catch (error) {
-        console.log(error)
-        const jsonMessage = JSON.parse(error.message);
-        return thunkAPI.rejectWithValue(jsonMessage.error);
+        return thunkAPI.rejectWithValue(error.message)
     }
 
 })
@@ -70,7 +64,8 @@ const initialState = {
     isServerPhrases: false,
     allPhrases: [],
     isLoading: false,
-    errorMessage: null
+    errorMessage: null,
+    closeNotif: false
 }
 
 export const destructiveText = (text) => {
@@ -99,6 +94,9 @@ const phrasesSlice = createSlice({
         },
         setAllPhrasesByDB: (state, { payload }) => {
             state.allPhrases = payload
+        },
+        setCloseNotif: (state, { payload }) => {
+            state.closeNotif = payload
         }
     },
 
@@ -137,6 +135,6 @@ const phrasesSlice = createSlice({
 })
 
 
-export const { addPhrases, setIsServerPhrases, setAllPhrasesByDB } = phrasesSlice.actions
+export const { addPhrases, setCloseNotif, setIsServerPhrases, setAllPhrasesByDB } = phrasesSlice.actions
 export default phrasesSlice.reducer
 

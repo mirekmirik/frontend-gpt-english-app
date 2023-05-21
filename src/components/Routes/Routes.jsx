@@ -7,6 +7,8 @@ import Home from '../Home/Home'
 import RequireAuth from '../RequireAuth'
 import GamesCategories from '../Games/GamesCategories/GamesCategories'
 import GeneralQuestions from '../Games/GamesCategories/GeneralQuestions/GeneralQuestions'
+import Settings from '../Settings/Settings'
+import SettingsPage from '../Settings/SettingsPage'
 
 const AppRoutes = () => {
     return (
@@ -33,9 +35,11 @@ const AppRoutes = () => {
             />
 
             <Route path={ROUTES.GAME_GENERAL_QUESTION} element={<RequireAuth><GeneralQuestions /></RequireAuth>} />
+            <Route path={ROUTES.SETTINGS} element={<RequireAuth><SettingsPage /></RequireAuth>} />
 
-        </Routes>
+
+            </Routes>
     )
 }
 
-export default AppRoutes
+            export default AppRoutes

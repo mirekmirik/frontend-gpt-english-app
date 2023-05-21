@@ -23,7 +23,6 @@ export const initSpeech = (text) => (dispatch) => {
   initUtterance.text = text;
   speechSynthesis.onvoiceschanged = () => {
     const initVoices = speechSynthesis.getVoices();
-    console.log(initVoices);
     if (initVoices.length > 0) {
       const initVoice = initVoices[5];
       if (initVoice) {
@@ -38,13 +37,14 @@ export const initSpeech = (text) => (dispatch) => {
   };
 };
 
-export const speak = (arg) => (dispatch, getState) => {
+export const speak = (arg) => (_, getState) => {
   if ('speechSynthesis' in window) {
     const { text, voice } = getState().speech;
     if (text && voice) {
       const utterance = new SpeechSynthesisUtterance(text);
       const voices = speechSynthesis.getVoices();
       const selectedVoice = voices.find(v => v.voiceURI === voice);
+      console.log(selectedVoice)
       if (selectedVoice) {
         utterance.voice = selectedVoice;
         utterance.text = arg

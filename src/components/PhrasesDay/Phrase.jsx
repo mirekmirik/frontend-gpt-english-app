@@ -12,8 +12,8 @@ const Phrase = ({ phrase }) => {
         <div className={styles.textwrapper} >
             <p className={styles.paragraph}><span className={styles.span}>Phrase: </span>"{translateText || phrase}".</p>
             <div className={styles.controllers}>
-                <SpeechTextButton text={phrase} color={'purple'} />
-                <TranslateBtn text={phrase} color={'purple'} />
+                <SpeechTextButton text={phrase} />
+                <TranslateBtn text={phrase} />
             </div>
         </div>
     )

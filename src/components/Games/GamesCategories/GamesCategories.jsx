@@ -10,7 +10,6 @@ const GamesCategories = () => {
 
 
     return (
-        // <GameTotal />
         <Wrapper>
             <div className={styles.gamescategories}>
                 <Link to={ROUTES.GAME_GENERAL_QUESTION} className={styles.link}>

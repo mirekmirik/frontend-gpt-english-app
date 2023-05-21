@@ -1,7 +1,8 @@
-.games {
+.settings {
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: end;
     /* width: 25%; */
     column-gap: 5px;
 }

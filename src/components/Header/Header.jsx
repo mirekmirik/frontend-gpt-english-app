@@ -1,21 +1,29 @@
 import { faDragon } from "@fortawesome/free-solid-svg-icons";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useLocation } from "react-router";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser, resetAll } from "../../features/userSlice";
+import { useNavigate } from "react-router";
 import styles from '../../styles/Header.module.css'
 
 
 const Header = () => {
-    const location = useLocation()
-    const isAuthPage = location.pathname === '/auth'
-    let icon = <FontAwesomeIcon icon={faDragon} size='xl' style={{ color: "#7036a1", }} className='cursor-pointer' />;
-    if (!isAuthPage) {
-        icon = <Link to='/'><FontAwesomeIcon icon={faDragon} size='xl' style={{ color: "#7036a1", }} className='cursor-pointer' /></Link>
+    const { currentUser } = useSelector(({ user }) => user)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const logoutHandler = () => {
+        navigate('/auth/login')
+        dispatch(resetAll())
     }
 
     return (
-        <div className={`md:container md:mx-auto h-7 top-0 shadow-sm ${styles.header} w-screen px-2 flex items-center`}>
-            {icon}
+        <div className={styles.header}>
+            {currentUser ? <>
+                <FontAwesomeIcon icon={faDragon} size='xl' style={{ color: "#7036a1" }} />
+                <FontAwesomeIcon onClick={logoutHandler} icon={faRightFromBracket} size='xl' style={{ color: "#7036a1" }} />
+            </> :
+                <FontAwesomeIcon icon={faDragon} size='xl' style={{ color: "#7036a1" }} />}
         </div >
     )
 }

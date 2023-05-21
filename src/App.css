@@ -94,3 +94,7 @@ button:hover {
 a {
     text-decoration: none;
 }
+
+i:hover {
+    color: var(--background) !important;
+}

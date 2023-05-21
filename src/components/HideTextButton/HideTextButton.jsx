@@ -1,6 +1,10 @@
+import styles from '../../styles/SpeechTextButton.module.css'
+
 const HideTextButton = (props) => {
     return (
-        <i class="fa-solid fa-eye-slash mr-2" onClick={props.onClick} style={{ color: "#f7d725" }}></i>
+        <button className={styles.button}>
+            <i class="fa-solid fa-eye-slash mr-2" onClick={props.onClick} style={{ color: "#f7d725" }}></i>
+        </button>
     )
 }
 

@@ -4,7 +4,6 @@ import { addPhrases, setIsServerPhrases, setAllPhrasesByDB } from './phrasesSlic
 
 export const createUser = createAsyncThunk('users/createUser', async (payload, thunkAPI) => {
     try {
-        console.log(payload)
         const res = await fetch(`${BASE_URL}/register`, {
             method: "POST",
             headers: {
@@ -15,7 +14,7 @@ export const createUser = createAsyncThunk('users/createUser', async (payload, t
 
         if (!res.ok) {
             const data = await res.json()
-            throw new Error(JSON.stringify(data))
+            throw new Error(data.error)
         }
 
         const data = await res.json()
@@ -23,8 +22,9 @@ export const createUser = createAsyncThunk('users/createUser', async (payload, t
 
 
     } catch (error) {
-        const jsonMessage = JSON.parse(error.message)
-        return thunkAPI.rejectWithValue(jsonMessage.error)
+        return thunkAPI.rejectWithValue(error.message)
+        // const jsonMessage = JSON.parse(error.message)
+        // return thunkAPI.rejectWithValue(jsonMessage.error)
     }
 })
 
@@ -55,12 +55,13 @@ export const loginUser = createAsyncThunk('users/loginUser', async (payload, thu
 })
 
 export const getUser = createAsyncThunk('users/getUser', async (payload, thunkAPI) => {
-    console.log(payload)
     try {
         const res = await fetch(`${BASE_URL}/user/${payload}`)
         if (!res.ok) {
             const data = await res.json()
-            throw new Error(JSON.stringify(data))
+            throw new Error(data.error)
+
+            // throw new Error(JSON.stringify(data))
         }
 
         const user = await res.json()
@@ -78,16 +79,44 @@ export const getUser = createAsyncThunk('users/getUser', async (payload, thunkAP
             }
         }
     } catch (error) {
-        console.log(error)
-        const jsonMessage = JSON.parse(error.message);
-        return thunkAPI.rejectWithValue(jsonMessage.error);
+        return thunkAPI.rejectWithValue(error.message)
+
+        // const jsonMessage = JSON.parse(error.message);
+        // return thunkAPI.rejectWithValue(jsonMessage.error);
     }
 });
 
 
+export const updateUser = createAsyncThunk('users/updateUser', async (payload, thunkAPI) => {
+    try {
+        const res = await fetch(`${BASE_URL}/user/${payload.id}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                login: payload.login,
+                password: payload.password,
+                newPassword: payload.newPassword,
+                englishLvl: payload.englishLvl,
+            })
+        })
+
+        if (!res.ok) {
+            const data = await res.json()
+            throw new Error(data.error)
+        }
+
+        const data = await res.json()
+        return data
+
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.message)
+    }
+})
+
 export const postEnglishLvl = createAsyncThunk('users/postEnglishLvl', async (payload, thunkAPI) => {
     try {
-        console.log(payload)
         const res = await fetch(`${BASE_URL}/englishlvl`, {
             method: "POST",
             headers: {
@@ -101,16 +130,19 @@ export const postEnglishLvl = createAsyncThunk('users/postEnglishLvl', async (pa
 
         if (!res.ok) {
             const data = await res.json()
-            throw new Error(JSON.stringify(data))
+            throw new Error(data.error)
+            // const data = await res.json()
+            // throw new Error(JSON.stringify(data))
         }
 
         const data = await res.json()
-        console.log(data)
         return data
 
     } catch (error) {
-        const jsonMessage = JSON.parse(error.message)
-        return thunkAPI.rejectWithValue(jsonMessage.error)
+        return thunkAPI.rejectWithValue(error.message)
+
+        // const jsonMessage = JSON.parse(error.message)
+        // return thunkAPI.rejectWithValue(jsonMessage.error)
     }
 })
 
@@ -131,6 +163,9 @@ const userSlice = createSlice({
         addEnglishLvl: (state, { payload }) => {
             state.currentUser.englishLvl = payload
         },
+        logoutUser: (state, { payload }) => {
+            return initialState
+        }
     },
     extraReducers: (builder) => {
         // Register User
@@ -168,28 +203,27 @@ const userSlice = createSlice({
         // Get User
         builder.addCase(getUser.pending, (state) => {
             state.isLoading = true;
-            state.error = null;
+            state.errorMessage = null;
         })
         builder.addCase(getUser.fulfilled, (state, { payload }) => {
             state.isLoading = false;
-            // state.user = action.payload.user;
-            // state.allPhrases = action.payload.allPhrases;
-
-            // const today = new Date();
-            // const todayString = today.toISOString().substring(0, 10);
-
-            // if (state.user.phrasesWithDate.length > 0) {
-            //     const lastDateInDB = state.user.phrasesWithDate.at(-1).date.substring(0, 10);
-            //     if (todayString === lastDateInDB) {
-            //         const phrases = state.user.phrasesWithDate.at(-1).phrases;
-            //         state.isServerPhrases = true;
-            //         state.phrases = phrases;
-            //     }
-            // }
         })
-        builder.addCase(getUser.rejected, (state, action) => {
+        builder.addCase(getUser.rejected, (state, { payload }) => {
             state.isLoading = false;
-            state.error = action.error.message;
+            state.errorMessage = payload;
+        });
+        // Update User
+        builder.addCase(updateUser.pending, (state) => {
+            state.isLoading = true;
+            state.errorMessage = null;
+        })
+        builder.addCase(updateUser.fulfilled, (state, { payload }) => {
+            state.isLoading = false;
+            state.currentUser = payload
+        })
+        builder.addCase(updateUser.rejected, (state, { payload }) => {
+            state.isLoading = false;
+            state.errorMessage = payload;
         });
 
         // Post English Lvl
@@ -209,8 +243,13 @@ const userSlice = createSlice({
             state.currentUser.englishLvl = null
             state.errorMessage = payload
         })
+
     }
 })
 
-export const { addEnglishLvl } = userSlice.actions
+export const resetAll = () => (dispatch) => {
+    dispatch({ type: "RESET" })
+}
+
+export const { addEnglishLvl, logoutUser } = userSlice.actions
 export default userSlice.reducer

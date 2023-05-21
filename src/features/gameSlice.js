@@ -35,7 +35,8 @@ export const getNewGeneralQuestion = createAsyncThunk('game/generalQuestion', as
 
         if (!res.ok) {
             const data = await res.json()
-            throw new Error(JSON.stringify(data))
+            throw new Error(data.error)
+            // throw new Error(JSON.stringify(data))
         }
 
         const data = await res.json()
@@ -48,11 +49,11 @@ export const getNewGeneralQuestion = createAsyncThunk('game/generalQuestion', as
             thunkAPI.dispatch(decrementScore(3))
         } else {
             if (game.messages.length > 2) {
+                thunkAPI.dispatch(incrementScore(5))
                 thunkAPI.dispatch(setCorrect(true))
                 thunkAPI.dispatch(setIncorrect(false))
-                thunkAPI.dispatch(incrementScore(5))
             }
-            const question = fullMessage.substring(fullMessage.indexOf('Question:'), fullMessage.indexOf('A)'))
+            const question = fullMessage.substring(fullMessage.indexOf('Question:') || fullMessage.indexOf('question:'), fullMessage.indexOf('A)'))
             const options = fullMessage.substring(fullMessage.indexOf('A)'))
             const optionsArr = options.split('\n')
             const formattedOptions = {}
@@ -72,8 +73,10 @@ export const getNewGeneralQuestion = createAsyncThunk('game/generalQuestion', as
         thunkAPI.dispatch(setMessages(newAssistMessage))
 
     } catch (error) {
-        const jsonMessage = JSON.parse(error.message);
-        return thunkAPI.rejectWithValue(jsonMessage.error);
+        return thunkAPI.rejectWithValue(error.message)
+
+        // const jsonMessage = JSON.parse(error.message);
+        // return thunkAPI.rejectWithValue(jsonMessage.error);
     }
 })
 
@@ -121,16 +124,6 @@ const gameSlice = createSlice({
         resetGame: (state, { payload }) => {
             return { ...initialState }
         },
-        // setIncorrectAnswers: (state, { payload }) => {
-        //     const totalIncorrectAnswers = state.messages.filter((message) => message.content.toLowerCase().includes('again')).length - 1
-        //     return totalIncorrectAnswers
-        //     // state.incorrectAnswers = payload
-        // },
-        // setCorrectAnswers: (state, { payload }) => {
-        //     const totalCorrectAnswers = state.messages.filter((message) => message.content.toLowerCase().includes('correct!')).length - 1
-        //     return totalCorrectAnswers
-        //     // state.incorrectAnswers = payload
-        // },
         setCorrect: (state, { payload }) => {
             if (payload) {
                 state.correctAnswers += 1

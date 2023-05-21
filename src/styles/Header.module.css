@@ -1,6 +1,8 @@
 .header {
     background-color: rgb(247, 215, 37);
-    padding: 5px 5px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .header-text {

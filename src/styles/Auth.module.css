@@ -10,7 +10,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   /* background-color: rgb(73, 75, 194); */
-  background-color: rgb(39 41 153 / 56%);
+  background-color: var(--blue);
   padding: 10px 10px;
   border-radius: 5px;
   width: 65%;

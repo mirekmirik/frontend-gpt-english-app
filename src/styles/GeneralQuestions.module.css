@@ -110,6 +110,11 @@
 
 .option p {
     text-align: center;
+    cursor: pointer;
+}
+
+.option p:hover {
+    color: aquamarine;
 }
 
 .total {

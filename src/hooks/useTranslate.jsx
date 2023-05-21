@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react"
+import styles from '../styles/SpeechTextButton.module.css'
 
 
 const useTranslate = () => {
@@ -29,10 +30,8 @@ const useTranslate = () => {
 
     const TranslateBtn = (props) => {
 
-
-
         return (
-            <button style={{ backgroundColor: 'inherit' }}><i className="fa-solid fa-language" onClick={() => translateTextHandler(props.text)} style={{ color: props.color || "#f7d725" }}></i></button>
+            <button className={styles.button} ><i className="fa-solid fa-language" onClick={() => translateTextHandler(props.text)} style={{ color: props.color || "#f7d725" }}></i></button>
         )
     }
 

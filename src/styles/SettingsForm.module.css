@@ -1,0 +1,47 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    background-color: var(--blue);
+    padding: 20px 20px;
+    border-radius: 5px;
+}
+
+.form label {
+    color: #ffff;
+}
+
+.input {
+    /* height: 15px; */
+    padding: 7px 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--yellow);
+}
+
+.submit {
+    border: none;
+    /* cursor: none; */
+    background-color: var(--yellow);
+    color: var(--violet);
+    font-weight: 600;
+    /* flex: auto; */
+    padding: 10px 10px;
+    /* width: 30%; */
+    border-radius: 5px;
+}
+
+.select {
+    border-radius: 5px;
+    padding: 5px 3px;
+    background-color: var(--yellow);
+    color: var(--violet);
+    font-weight: 600;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+
+.optionlvl {
+    width: 100%;
+}

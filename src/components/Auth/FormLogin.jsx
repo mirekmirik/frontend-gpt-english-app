@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import styles from '../../styles/FormAuth.module.css'
 import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { createUser, loginUser } from '../../features/userSlice'
-import TopModal from '../TopModal/TopModal'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../../features/userSlice'
 import { ROUTES } from '../../utils/routes'
-import Spinner from '../Spinner/Spinner'
 import Handling from '../Handling/Handling'
+import styles from '../../styles/FormAuth.module.css'
 
 const FormRegister = ({ isLoading }) => {
 
@@ -30,7 +28,6 @@ const FormRegister = ({ isLoading }) => {
     }, [])
 
     const handleChange = ({ target: { value, name } }) => {
-        console.log(values)
         setValues((prevState) => ({ ...prevState, [name]: value }))
     }
 
@@ -59,13 +56,10 @@ const FormRegister = ({ isLoading }) => {
         <form className={styles.form} onSubmit={submitHandler}>
             <div className={styles.title}>Login</div>
             <Handling error={error} success={success} isLoading={isLoading} />
-            {/* {isLoading && <Spinner />}
-            {error && <p className={styles.error}>{error}</p>}
-            {success && <p className={styles.success}>{success}</p>} */}
             <label className={styles.label}>Login: </label>
-            <input name="login" type="text" value={values.login} className={styles.input} onChange={handleChange} />
+            <input name="login" type="text" value={values.login} className={styles.input} onChange={handleChange} autoComplete='off' />
             <label className={styles.label} >Password:</label>
-            <input name="password" type="text" value={values.password} className={styles.input} onChange={handleChange} />
+            <input name="password" type="text" value={values.password} className={styles.input} onChange={handleChange} autoComplete='off' />
             <Link to='/auth/register'>
                 <div className={styles.link}>Havent yet registered? Register.</div>
             </Link>

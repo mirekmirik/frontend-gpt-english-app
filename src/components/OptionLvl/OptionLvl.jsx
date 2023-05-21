@@ -60,7 +60,7 @@ const OptionLvl = () => {
     const submitHandler = async (event) => {
         event.preventDefault()
         try {
-            const resultAction = await dispatch(postEnglishLvl({ login: currentUser.login, englishLvl: selectedLvl }))
+            const resultAction = await dispatch(postEnglishLvl({ login: currentUser.login, englishLvl: selectedLvl || 'A1' }))
             const valueFromAction = resultAction.payload
             if (postEnglishLvl.fulfilled.match(resultAction)) {
                 setSuccess(`Вы успешно выбрали ваш уровень английского ${valueFromAction}`)

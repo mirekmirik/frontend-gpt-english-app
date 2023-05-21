@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../../styles/FormAuth.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { createUser } from '../../features/userSlice'
-import TopModal from '../TopModal/TopModal'
-import Spinner from '../Spinner/Spinner'
 import Handling from '../Handling/Handling'
 
 const FormRegister = ({ isLoading }) => {
 
-
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const initialState = {
         login: '',
@@ -29,7 +27,6 @@ const FormRegister = ({ isLoading }) => {
     }, [])
 
     const handleChange = ({ target: { value, name } }) => {
-        console.log(values)
         setValues((prevState) => ({ ...prevState, [name]: value }))
     }
 
@@ -44,6 +41,9 @@ const FormRegister = ({ isLoading }) => {
             if (createUser.fulfilled.match(resultAction)) {
                 setSuccess(valueFromAction)
                 setValues(initialState)
+                setTimeout(() => {
+                    navigate('/auth/login')
+                }, 500);
             } else {
                 setError(valueFromAction)
             }
